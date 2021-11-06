@@ -1,0 +1,61 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class GuessANumber03 {
+	public static void main(String[] args) {
+		guessNum();  //method for guessing number from seed
+	}
+
+	public static void guessNum() {
+		//new scanner for method to guess number
+		String cont;
+		int tries = 1;
+		
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter a seed:\n\n");
+		int seed = scan.nextInt();
+		
+		//make random number from seed
+		Random randomSeeded = new Random(seed);
+		int rant = randomSeeded.nextInt(100 - 1 + 1) + 1;
+		
+		//input for user guess 
+		do {
+		System.out.println("Welcome!\n"
+				+ "Please enter a number between 1 and 100:\n");
+		int input = scan.nextInt();
+		
+		
+		//starting while loop
+		while (input != rant) {
+			tries++;
+			
+		//starting if statements within loop	
+		if (input > rant) {
+			System.out.println ("Too high. Guess again: \n");
+			input = scan.nextInt();
+		}else if (input < rant) {
+			System.out.println ("Too low. Guess again: \n");
+			input = scan.nextInt();
+		}
+	}
+		System.out.println ("Congratulations. You guessed correctly! ");
+		if (tries == 1) {
+		System.out.println ("You needed only " + tries + " guess.\n");
+		}else if (tries > 1) {
+			System.out.println("You needed " + tries + " guesses.\n");
+		}
+		
+		System.out.println("Do you want to play again? Answer \"yes\" or \"no\":");
+        scan.nextLine();
+        cont = scan.nextLine();
+        System.out.println();
+        System.out.println();
+        
+        
+		} while (cont.equalsIgnoreCase("yes"));
+		System.out.println("Game Over!");
+		scan.close();
+        
+	}
+}   
